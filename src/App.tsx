@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Login from './components/Login';
 import MainPage from './components/MainPage';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import {  Router, Route, Routes, Navigate } from 'react-router-dom';
 import MakeNewClient from './components/MakeNewClient';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   const [User, setUser] = useState<string>('');
 
   return (
-    <Router>
+   
       <div className="App">
         <Routes>
           <Route path="/" element={<Login setLogin={setIsLoggedIn} setNewUser={setUser} />} />
@@ -18,7 +18,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
-    </Router>
+   
   );
 }
 

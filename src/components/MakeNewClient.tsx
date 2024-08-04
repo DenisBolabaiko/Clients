@@ -22,13 +22,16 @@ const MaskedInput = forwardRef((props: any, ref: any) => (
 ));
 
 const clientSchema = z.object({
-  
-    id: z.number().int(),
-    name: z.string().nonempty('Пожалуйста, введите ваше имя!'),
-    data: z.string().nonempty('Пожалуйста, выберите дату!'),
-    number: z.string().nonempty('Некорректный номер телефона!'),
-    country: z.string(), 
-    email: z.string().optional(),
+  id: z.number().int(),
+  name: z.string().nonempty('Пожалуйста, введите ваше имя!'),
+  data: z.string().optional(),
+  number: z.string().nonempty('Некорректный номер телефона!'),
+  country: z.string().optional(),
+  email: z.string().email('Некорректный адрес эл.почты!').nonempty('Пожалуйста, введите ваш E-mail!'),
+  address: z.object({
+    province: z.string().optional(),
+    street: z.string().optional(),
+  }).optional(),
 });
 
 const MakeNewClient: React.FC<Props> = ({ newClientId, CloseForm, fetchData }) => {
@@ -41,10 +44,14 @@ const MakeNewClient: React.FC<Props> = ({ newClientId, CloseForm, fetchData }) =
     const result = clientSchema.safeParse({
       id: Number(newClientId),
       name: client.name,
-      data: date,
+      data: date || undefined,
       number: client.number,
       country: client.country,
       email: client.email,
+      address: {
+        province: client.address?.province,
+        street: client.address?.street,
+      },
     });
 
     if (!result.success) {
@@ -102,7 +109,7 @@ const MakeNewClient: React.FC<Props> = ({ newClientId, CloseForm, fetchData }) =
         <Form.Item
           label="Дата"
           name="data"
-          rules={[{ required: true, message: 'Пожалуйста, выберите дату!' }]}
+          rules={[{ required: false }]}
         >
           <DatePicker onChange={onChange} style={{ width: '100%' }} />
         </Form.Item>
@@ -137,14 +144,14 @@ const MakeNewClient: React.FC<Props> = ({ newClientId, CloseForm, fetchData }) =
             <Form.Item
               name={['address', 'province']}
               noStyle
-              rules={[{ required: true, message: 'Регион обязателен!' }]}
+              rules={[{ required: false}]}
             >
               <Input style={{ width: '50%' }} placeholder="Введите город" />
             </Form.Item>
             <Form.Item
               name={['address', 'street']}
               noStyle
-              rules={[{ required: true, message: 'Улица обязательна!' }]}
+              rules={[{ required: false }]}
             >
               <Input style={{ width: '50%' }} placeholder="Введите улицу" />
             </Form.Item>

@@ -83,7 +83,7 @@ const MainPage: React.FC<MainPageProps> = ({ Username, setLogout }) => {
           type="primary"
           icon={<UserOutlined />}
           onClick={() => { setShowClients(!showClients); setMakeClient(false); }}
-          style={{ width: '100%', display: 'block', textAlign: 'center',  borderRadius:'0 0 0 0' , height:'64px', fontSize:'16px'}} // добавленные стили
+          style={{ width: '100%', display: 'block', textAlign: 'center',  borderRadius:'0 0 0 0' , height:'64px', fontSize:'16px'}}
         >
           Клиенты
         </Button>
@@ -100,7 +100,7 @@ const MainPage: React.FC<MainPageProps> = ({ Username, setLogout }) => {
             color: '#fff',
           }}
         >
-          <h2 style={{ margin: 0, color: '#fff' }}>Welcome, {Username}!</h2>
+          <h2 style={{ margin: 0, color: '#fff' }}>Добро пожаловать, {Username}!</h2>
           <Button type="primary" onClick={() => setLogout(false)}>
             Logout
           </Button>
@@ -130,7 +130,7 @@ const MainPage: React.FC<MainPageProps> = ({ Username, setLogout }) => {
           </Content>
         ) : (
           <Content style={{ margin: '24px 16px 0', overflow: 'initial' }}>
-            <h1>Welcome to the main page!</h1>
+            <h1>Добро пожаловать на главную страницу</h1>
           </Content>
         )}
 

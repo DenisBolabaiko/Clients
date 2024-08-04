@@ -62,7 +62,7 @@ const Login: React.FC<LoginProps> = ({ setLogin , setNewUser }) => {
                     valuePropName="checked"  
                     wrapperCol={{ offset: 8, span: 16 }}  
                 >  
-                    <Checkbox>Remember me</Checkbox>  
+                    <Checkbox>Запомнить меня</Checkbox>  
                 </Form.Item>  
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>  
